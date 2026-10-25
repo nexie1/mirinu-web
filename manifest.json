@@ -1,11 +1,11 @@
 {
-    "name": "crowtv",
-    "short_name": "crowtv",
+    "name": "Mirinu",
+    "short_name": "Mirinu",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#0B0E13",
+    "theme_color": "#0B0E13",
+    "description": "Mirinu : suis tes séries, films, animés et mangas.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
