@@ -89475,7 +89475,7 @@ return A.b(p.eT("CREATE TEMP TABLE IF NOT EXISTS mirinu_open (build TEXT NOT NUL
 case 3:s=4
 return A.b(p.eT("DELETE FROM temp.mirinu_open"),$async$$1)
 case 4:s=5
-return A.b(p.j2("INSERT INTO temp.mirinu_open (build) VALUES (?)",["0.43.0"]),$async$$1)
+return A.b(p.j2("INSERT INTO temp.mirinu_open (build) VALUES (?)",["0.43.1"]),$async$$1)
 case 5:s=6
 return A.b(p.eT("CREATE INDEX IF NOT EXISTS idx_logs_item ON progress_logs (media_item_id)"),$async$$1)
 case 6:s=7
@@ -91838,11 +91838,11 @@ return this.a.ak3(a,b)}}
 A.ws.prototype={
 M(){return"WebTabsPhase."+this.b}}
 A.axa.prototype={
-bYJ(a,b){var s=new A.bwq("0.43.0",this.gbyk(),b)
+bYJ(a,b){var s=new A.bwq("0.43.1",this.gbyk(),b)
 this.c=s
 return A.cx1(A.Na(new A.bC3(this,new A.bC4(a,s)),t.n3))},
 byl(a,b){var s,r=this
-switch(a.a){case 0:A.f7().$1("Base : pr\xeate (v0.43.0, "+b+")")
+switch(a.a){case 0:A.f7().$1("Base : pr\xeate (v0.43.1, "+b+")")
 s=r.a
 if(s.a!==B.nR)s.su(B.abw)
 break
@@ -91877,7 +91877,7 @@ if(!("locks" in o.window.navigator&&"BroadcastChannel" in o&&"indexedDB" in o)){
 s=1
 break}o=p.a
 s=3
-return A.b(o.b.ap9("0.43.0","crowtv",o.gbG9(),new A.bC2(o)),$async$$0)
+return A.b(o.b.ap9("0.43.1","crowtv",o.gbG9(),new A.bC2(o)),$async$$0)
 case 3:if(b===B.GY||o.a.a===B.nR){o.a.su(B.nR)
 q=new A.ao($.av,t.AC)
 s=1
@@ -118972,7 +118972,7 @@ $S:88}
 A.ckQ.prototype={
 $0(){var s=null,r=A.a([A.n($.d().gOF(),s,s,s,s,s,s,s,s),B.ac],t.p)
 B.b.B(r,A.cGe(!1))
-return A.dcZ("Mirinu","0.43.0",r,this.a)},
+return A.dcZ("Mirinu","0.43.1",r,this.a)},
 $S:0}
 A.ckR.prototype={
 $0(){var s=this.a
@@ -119011,7 +119011,7 @@ o=$.z?B.h:B.f
 q.push(new A.R(B.eF,A.n(p,n,n,n,n,new A.Z(!0,o.e,n,n,n,n,13,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n),n,n,n),n))}q.push(new A.ZG(s[r],n))
 B.b.B(l,q)}return new A.R(B.Lj,A.aB(l,B.m,B.i,B.j,0,n,n),n)}}
 A.azA.prototype={
-C(a){var s=null,r=A.ax(s,s,($.z?B.h:B.f).e,s,s,s,s,s,s,s,s,13,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),q=t.p,p=A.aB(A.a([A.nq(A.bp(10),A.cyT("assets/brand/lucky-192.png",96,B.dU,48,48),B.bi),B.eb,A.ad(A.a([A.n("Mirinu",s,s,s,s,A.pG(s,22),s,s,s),A.n($.d().a0T("0.43.0"),s,s,s,s,r,s,s,s)],q),B.v,B.i,B.j,0,B.k)],q),B.m,B.i,B.j,0,s,s),o=A.n($.d().gOF(),s,s,s,s,B.aWs,s,s,s)
+C(a){var s=null,r=A.ax(s,s,($.z?B.h:B.f).e,s,s,s,s,s,s,s,s,13,s,s,s,s,s,!0,s,s,s,s,s,s,s,s),q=t.p,p=A.aB(A.a([A.nq(A.bp(10),A.cyT("assets/brand/lucky-192.png",96,B.dU,48,48),B.bi),B.eb,A.ad(A.a([A.n("Mirinu",s,s,s,s,A.pG(s,22),s,s,s),A.n($.d().a0T("0.43.1"),s,s,s,s,r,s,s,s)],q),B.v,B.i,B.j,0,B.k)],q),B.m,B.i,B.j,0,s,s),o=A.n($.d().gOF(),s,s,s,s,B.aWs,s,s,s)
 q=A.a([p,B.au,o,B.ed,A.bP(s,s,B.q,$.z?B.f7:B.cO,s,s,s,1,s,s,s,s,s),B.ed],q)
 B.b.B(q,A.cGe(!0))
 q.push(B.au)
@@ -119023,7 +119023,7 @@ o.toString
 q.push(A.bs(!1,A.n(o.gca(),s,s,s,s,s,s,s,s),s,s,!0,s,s,s,new A.bDq(a),s,p))
 return new A.R(B.an6,A.ad(q,B.v,B.i,B.j,0,B.k),s)}}
 A.bDq.prototype={
-$0(){return A.cJk(null,null,"Mirinu","0.43.0",this.a)},
+$0(){return A.cJk(null,null,"Mirinu","0.43.1",this.a)},
 $S:0}
 A.cdL.prototype={
 $0(){return A.wW(A.d2("https://www.themoviedb.org",0,null),B.p_)},
@@ -124722,7 +124722,7 @@ ga9v(){return"Der Relay-Server speichert dann deine E-Mail-Adresse, verschl\xfcs
 ga9u(){return"Mirinu schreibt dir nur wegen deines Kontos, nie f\xfcr Werbung. Wenn du dich mit Google anmeldest, wei\xdf Google, dass du Mirinu nutzt."},
 ga9s(){return"Die Kontodaten bleiben, solange das Konto besteht. Du kannst es jederzeit l\xf6schen: Es wird 7 Tage nach deiner Anfrage gel\xf6scht. Ein Konto, das 24 Monate inaktiv ist, wird ebenfalls gel\xf6scht, nach einer Warn-E-Mail."},
 ga9J(){return"Dienstleister und L\xe4nder"},
-ga9M(){return"Cloudflare (USA, Server in mehreren L\xe4ndern) betreibt den Relay-Server. GitHub (USA) hostet mirinu.ch und app.mirinu.ch und f\xfchrt eigene Zugriffsprotokolle. Infomaniak (Schweiz) hostet das Postfach contact@mirinu.ch. Cloudflare und GitHub nehmen am Data Privacy Framework teil, das die Schweiz und die EU f\xfcr Daten anerkennen, die in die USA gehen."},
+ga9M(){return"Cloudflare (USA, Server in mehreren L\xe4ndern) betreibt den Relay-Server. Auf der Website laufen Suchen und Seiten von Mangas und Romanen zus\xe4tzlich \xfcber Vercel (USA), ohne deine IP-Adresse und ohne etwas, das auf dich schlie\xdfen l\xe4sst. GitHub (USA) hostet mirinu.ch und app.mirinu.ch und f\xfchrt eigene Zugriffsprotokolle. Infomaniak (Schweiz) hostet das Postfach contact@mirinu.ch. Cloudflare, Vercel und GitHub nehmen am Data Privacy Framework teil, das die Schweiz und die EU f\xfcr Daten anerkennen, die in die USA gehen."},
 ga9G(){return"Rechtsgrundlagen und Speicherdauer"},
 ga9y(){return"Mirinu h\xe4lt sich an das Schweizer Datenschutzgesetz und, f\xfcr Personen in der EU, an die DSGVO. Die Synchronisierung und die Anzeige der Titel dienen dem Dienst, den du anforderst (Art. 6 Abs. 1 lit. b DSGVO). Die Zuordnungen und das Hosting beruhen auf dem berechtigten Interesse, den Dienst zu betreiben (lit. f)."},
 ga9B(){return"Mirinu speichert deine IP-Adresse nicht. Der Relay-Server l\xf6scht eine synchronisierte Kopie 180 Tage nach ihrer letzten Synchronisierung. Eine E-Mail, die du schickst, wird aufbewahrt, bis deine Anfrage erledigt ist."},
@@ -126292,7 +126292,7 @@ ga9v(){return"The relay then keeps your email address, encrypted (or that of you
 ga9u(){return"Mirinu only writes to you about your account, never to advertise. If you sign in with Google, Google knows that you use Mirinu."},
 ga9s(){return"Account data stays as long as the account exists. You can delete it whenever you want: it is erased 7 days after your request. An account inactive for 24 months is erased too, after a warning email."},
 ga9J(){return"Providers and countries"},
-ga9M(){return"Cloudflare (United States, servers in several countries) runs the relay. GitHub (United States) hosts mirinu.ch and app.mirinu.ch, and keeps its own access logs. Infomaniak (Switzerland) hosts the contact@mirinu.ch mailbox. Cloudflare and GitHub take part in the Data Privacy Framework, which Switzerland and the EU recognize for data sent to the United States."},
+ga9M(){return"Cloudflare (United States, servers in several countries) runs the relay. On the website, manga and novel searches and pages also go through Vercel (United States), without your IP address or anything that identifies you. GitHub (United States) hosts mirinu.ch and app.mirinu.ch, and keeps its own access logs. Infomaniak (Switzerland) hosts the contact@mirinu.ch mailbox. Cloudflare, Vercel and GitHub take part in the Data Privacy Framework, which Switzerland and the EU recognize for data sent to the United States."},
 ga9G(){return"Legal bases and retention"},
 ga9y(){return"Mirinu follows the Swiss data protection act and, for people in the EU, the GDPR. Sync and showing title pages serve the service you ask for (Art. 6(1)(b) GDPR). Matching and hosting rest on the legitimate interest in running the service (Art. 6(1)(f))."},
 ga9B(){return"Mirinu does not keep your IP address. The relay erases a synced copy 180 days after its last sync. An email you send is kept while your request is handled."},
@@ -127877,7 +127877,7 @@ ga9v(){return"El servidor intermediario guarda entonces tu direcci\xf3n de corre
 ga9u(){return"Mirinu solo te escribe sobre tu cuenta, nunca para hacer publicidad. Si inicias sesi\xf3n con Google, Google sabe que usas Mirinu."},
 ga9s(){return"Los datos de la cuenta se conservan mientras la cuenta exista. Puedes borrarla cuando quieras: se borra 7 d\xedas despu\xe9s de tu solicitud. Una cuenta inactiva durante 24 meses tambi\xe9n se borra, tras un correo de aviso."},
 ga9J(){return"Proveedores y pa\xedses"},
-ga9M(){return"Cloudflare (Estados Unidos, servidores en varios pa\xedses) hace funcionar el servidor intermediario. GitHub (Estados Unidos) aloja mirinu.ch y app.mirinu.ch, y lleva sus propios registros de acceso. Infomaniak (Suiza) aloja el buz\xf3n contact@mirinu.ch. Cloudflare y GitHub se adhieren al Data Privacy Framework, que Suiza y la UE reconocen para los datos enviados a Estados Unidos."},
+ga9M(){return"Cloudflare (Estados Unidos, servidores en varios pa\xedses) hace funcionar el servidor intermediario. En el sitio web, las b\xfasquedas y las fichas de mangas y novelas pasan tambi\xe9n por Vercel (Estados Unidos), sin tu direcci\xf3n IP ni nada que te identifique. GitHub (Estados Unidos) aloja mirinu.ch y app.mirinu.ch, y lleva sus propios registros de acceso. Infomaniak (Suiza) aloja el buz\xf3n contact@mirinu.ch. Cloudflare, Vercel y GitHub se adhieren al Data Privacy Framework, que Suiza y la UE reconocen para los datos enviados a Estados Unidos."},
 ga9G(){return"Bases jur\xeddicas y plazos"},
 ga9y(){return"Mirinu sigue la ley suiza de protecci\xf3n de datos y, para las personas en la UE, el RGPD. La sincronizaci\xf3n y la visualizaci\xf3n de las fichas sirven al servicio que pides (art. 6.1.b RGPD). Las correspondencias y el alojamiento se basan en el inter\xe9s leg\xedtimo en hacer funcionar el servicio (art. 6.1.f)."},
 ga9B(){return"Mirinu no guarda tu direcci\xf3n IP. El servidor intermediario borra una copia sincronizada 180 d\xedas despu\xe9s de su \xfaltima sincronizaci\xf3n. Un correo que env\xedas se guarda el tiempo necesario para tramitar tu solicitud."},
@@ -129451,7 +129451,7 @@ ga9v(){return"Le relais garde alors ton adresse mail, chiffr\xe9e (ou celle de t
 ga9u(){return"Mirinu t'\xe9crit seulement au sujet de ton compte, jamais pour de la publicit\xe9. Si tu te connectes avec Google, Google sait que tu utilises Mirinu."},
 ga9s(){return"Les donn\xe9es du compte restent tant qu'il existe. Tu peux le supprimer quand tu veux\xa0: il est effac\xe9 7 jours apr\xe8s ta demande. Un compte inactif pendant 24 mois est effac\xe9 aussi, apr\xe8s un mail d'avertissement."},
 ga9J(){return"Prestataires et pays"},
-ga9M(){return"Cloudflare (\xc9tats-Unis, serveurs dans plusieurs pays) fait tourner le relais. GitHub (\xc9tats-Unis) h\xe9berge mirinu.ch et app.mirinu.ch, et garde ses propres journaux d'acc\xe8s. Infomaniak (Suisse) h\xe9berge la bo\xeete contact@mirinu.ch. Cloudflare et GitHub adh\xe8rent au Data Privacy Framework, que la Suisse et l'UE reconnaissent pour les donn\xe9es envoy\xe9es aux \xc9tats-Unis."},
+ga9M(){return"Cloudflare (\xc9tats-Unis, serveurs dans plusieurs pays) fait tourner le relais. Sur le site, les recherches et les fiches de mangas et de romans passent aussi par Vercel (\xc9tats-Unis), sans ton adresse IP ni rien qui te d\xe9signe. GitHub (\xc9tats-Unis) h\xe9berge mirinu.ch et app.mirinu.ch, et garde ses propres journaux d'acc\xe8s. Infomaniak (Suisse) h\xe9berge la bo\xeete contact@mirinu.ch. Cloudflare, Vercel et GitHub adh\xe8rent au Data Privacy Framework, que la Suisse et l'UE reconnaissent pour les donn\xe9es envoy\xe9es aux \xc9tats-Unis."},
 ga9G(){return"Bases l\xe9gales et dur\xe9es"},
 ga9y(){return"Mirinu suit la loi suisse sur la protection des donn\xe9es et, pour les personnes dans l'UE, le RGPD. La synchro et l'affichage des fiches servent le service que tu demandes (art. 6, par. 1, let. b RGPD). Les correspondances et l'h\xe9bergement reposent sur l'int\xe9r\xeat l\xe9gitime \xe0 faire marcher le service (let. f)."},
 ga9B(){return"Mirinu ne garde pas ton adresse IP. Le relais efface une copie synchronis\xe9e 180 jours apr\xe8s sa derni\xe8re synchro. Un mail que tu envoies est gard\xe9 le temps de traiter ta demande."},
@@ -131031,7 +131031,7 @@ ga9v(){return"Il relay conserva allora il tuo indirizzo e-mail, cifrato (o quell
 ga9u(){return"Mirinu ti scrive solo per il tuo account, mai per pubblicit\xe0. Se accedi con Google, Google sa che usi Mirinu."},
 ga9s(){return"I dati dell'account restano finch\xe9 l'account esiste. Puoi cancellarlo quando vuoi: viene cancellato 7 giorni dopo la tua richiesta. Anche un account inattivo per 24 mesi viene cancellato, dopo un'e-mail di avviso."},
 ga9J(){return"Fornitori e paesi"},
-ga9M(){return"Cloudflare (Stati Uniti, server in diversi paesi) fa funzionare il relay. GitHub (Stati Uniti) ospita mirinu.ch e app.mirinu.ch, e conserva i propri registri di accesso. Infomaniak (Svizzera) ospita la casella contact@mirinu.ch. Cloudflare e GitHub aderiscono al Data Privacy Framework, che la Svizzera e l'UE riconoscono per i dati inviati negli Stati Uniti."},
+ga9M(){return"Cloudflare (Stati Uniti, server in diversi paesi) fa funzionare il relay. Sul sito, le ricerche e le schede di manga e romanzi passano anche da Vercel (Stati Uniti), senza il tuo indirizzo IP n\xe9 nulla che ti identifichi. GitHub (Stati Uniti) ospita mirinu.ch e app.mirinu.ch, e conserva i propri registri di accesso. Infomaniak (Svizzera) ospita la casella contact@mirinu.ch. Cloudflare, Vercel e GitHub aderiscono al Data Privacy Framework, che la Svizzera e l'UE riconoscono per i dati inviati negli Stati Uniti."},
 ga9G(){return"Basi giuridiche e durate"},
 ga9y(){return"Mirinu segue la legge svizzera sulla protezione dei dati e, per le persone nell'UE, il GDPR. La sincronizzazione e la visualizzazione delle schede servono al servizio che chiedi (art. 6, par. 1, lett. b GDPR). Le corrispondenze e l'hosting si basano sul legittimo interesse a far funzionare il servizio (lett. f)."},
 ga9B(){return"Mirinu non conserva il tuo indirizzo IP. Il relay cancella una copia sincronizzata 180 giorni dopo la sua ultima sincronizzazione. Un'e-mail che invii viene conservata il tempo di trattare la tua richiesta."},
