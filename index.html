@@ -37,12 +37,23 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
+  <!--
+    Les polices du thème (Inter 400, Bricolage Grotesque 700), demandées
+    dès la page : main() les attend avant le premier dessin
+    (lib/core/app_fonts.dart), et sans ceci elles ne partaient qu'une fois
+    l'app chargée (190 ms d'attente de plus à cache vide). Les adresses
+    sont celles de google_fonts : test/font_preload_test.dart vérifie
+    qu'elles le restent.
+  -->
+  <link rel="preload" as="fetch" crossorigin="anonymous" href="https://fonts.gstatic.com/s/a/15b294b67f2f8bbc04d990023ef4aec66502b87dc9040d84abe5f896ccb693de.ttf">
+  <link rel="preload" as="fetch" crossorigin="anonymous" href="https://fonts.gstatic.com/s/a/441dfdf87403d13d21f818dbba584ea5c49021ae8479863ef8d983c94f89e5f9.ttf">
+
   <title>Mirinu</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <!--
-    You can customize the "flutter_bootstrap.js?v=0.46.1-7513d82" script.
+    You can customize the "flutter_bootstrap.js?v=0.47.0-8cc16bc" script.
     This is useful to provide a custom configuration to the Flutter loader
     or to give the user feedback during the initialization process.
 
@@ -52,6 +63,6 @@
   <!-- Avant l'app : Ctrl + molette et Ctrl + plus / moins zooment la
        page (voir le fichier). -->
   <script src="browser_zoom.js"></script>
-  <script src="flutter_bootstrap.js?v=0.46.1-7513d82" async></script>
+  <script src="flutter_bootstrap.js?v=0.47.0-8cc16bc" async></script>
 </body>
 </html>
