@@ -1,13 +1,21 @@
+/* Page du contrôle anti-robots : transparente de bout en bout (WebView
+   Android, cadre de la version web), le thème sombre ne doit jamais avoir
+   de fond blanc autour. Le widget de Cloudflare n'apparaît que si un geste
+   est demandé (appearance: interaction-only), centré, 65 px de haut. */
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   background: transparent;
   overflow: hidden;
 }
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 #t {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }

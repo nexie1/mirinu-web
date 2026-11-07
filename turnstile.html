@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <!--
   Contrôle anti-robots (Cloudflare Turnstile) avant l'envoi d'un code de
-  connexion par mail ou la création d'une synchro. Ouverte dans un cadre par la version web, dans une
-  WebView par l'app Android (lib/features/account/turnstile*.dart). Elle
-  ne fait que rendre le jeton : turnstile.js. Seule page de Mirinu qui
-  charge un script de Cloudflare.
+  connexion par mail, la création d'une synchro ou l'envoi d'une affiche.
+  Ouverte dans un cadre par la version web, dans une WebView par l'app
+  Android (lib/features/account/turnstile*.dart, RobotCheck). Elle ne fait
+  que rendre le jeton et dire son état : turnstile.js (le contrat avec les
+  apps y est décrit). Seule page de Mirinu qui charge un script de
+  Cloudflare. Rien n'y est dessiné : l'attente, les erreurs et le bouton
+  « Réessayer » sont ceux de l'app.
 -->
 <html lang="fr">
 <head>
@@ -14,8 +17,8 @@
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex">
   <title>Mirinu</title>
-  <link rel="stylesheet" href="turnstile.css">
-  <script src="turnstile.js"></script>
+  <link rel="stylesheet" href="turnstile.css?v=2">
+  <script src="turnstile.js?v=2"></script>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=mirinuTurnstileReady" async defer></script>
 </head>
 <body>
