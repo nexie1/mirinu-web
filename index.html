@@ -25,7 +25,7 @@
     d'injection ne pourrait donc ni lancer de code ni envoyer la clé de
     synchro ailleurs qu'aux services listés dans connect-src.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://api.mirinu.ch https://fonts.gstatic.com https://image.tmdb.org https://cdn.mangaupdates.com https://accounts.google.com/gsi/; frame-src 'self' https://accounts.google.com/gsi/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://api.mirinu.ch https://fonts.gstatic.com https://image.tmdb.org https://cdn.mangaupdates.com https://static.tvmaze.com https://accounts.google.com/gsi/; frame-src 'self' https://accounts.google.com/gsi/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
 
   <!-- iOS meta tags & icons -->
@@ -40,13 +40,13 @@
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/Inter-Regular.woff2">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/BricolageGrotesque-Bold.woff2">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/Roboto-Regular.woff2">
-  <link rel="preload" as="fetch" crossorigin="anonymous" href="v/0.59.0-cbc72f1/assets/fonts/MaterialIcons-Regular.otf">
+  <link rel="preload" as="fetch" crossorigin="anonymous" href="v/0.60.0-9062228/assets/fonts/MaterialIcons-Regular.otf">
   <title>Mirinu</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
   <!--
-    You can customize the "flutter_bootstrap.js?v=0.59.0-cbc72f1" script.
+    You can customize the "flutter_bootstrap.js?v=0.60.0-9062228" script.
     This is useful to provide a custom configuration to the Flutter loader
     or to give the user feedback during the initialization process.
 
@@ -56,6 +56,6 @@
   <!-- Avant l'app : Ctrl + molette et Ctrl + plus / moins zooment la
        page (voir le fichier). -->
   <script src="browser_zoom.js"></script>
-  <script src="flutter_bootstrap.js?v=0.59.0-cbc72f1" async></script>
+  <script src="flutter_bootstrap.js?v=0.60.0-9062228" async></script>
 </body>
 </html>
