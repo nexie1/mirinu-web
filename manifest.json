@@ -1,11 +1,18 @@
 {
+    "id": "/",
     "name": "Mirinu",
     "short_name": "Mirinu",
-    "start_url": ".",
+    "start_url": "/",
+    "scope": "/",
     "display": "standalone",
     "background_color": "#0B0E13",
     "theme_color": "#0B0E13",
     "description": "Mirinu : suis tes séries, films, animés et mangas.",
+    "lang": "fr",
+    "dir": "ltr",
+    "categories": [
+        "entertainment"
+    ],
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
