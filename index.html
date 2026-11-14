@@ -32,7 +32,7 @@
     d'injection ne pourrait donc ni lancer de code ni envoyer la clé de
     synchro ailleurs qu'aux services listés dans connect-src.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vg5yet2Oz2dEfjU0oZNxcDceGpD2fycuh7V9WG4R2gg=' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://api.mirinu.ch https://fonts.gstatic.com https://image.tmdb.org https://cdn.mangaupdates.com https://static.tvmaze.com https://accounts.google.com/gsi/; frame-src 'self' https://accounts.google.com/gsi/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-8gseMNgyxEC6bj3DRTF4aoJjv1eN9i/ztFXSIuSv9zw=' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://api.mirinu.ch https://fonts.gstatic.com https://image.tmdb.org https://cdn.mangaupdates.com https://static.tvmaze.com https://accounts.google.com/gsi/; frame-src 'self' https://accounts.google.com/gsi/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <!--
     Connexions ouvertes pendant que l'app démarre : la poignée de main TLS
@@ -67,6 +67,17 @@
     (4) retire l'écran d'attente (ou la présentation) quand l'app a la main : à sa première
     image, ou, pour la présentation, à l'événement ci-dessus (4 s au plus après la première
     image : un écran qui ne se retire jamais cacherait l'app).
+    (5) pour un NOUVEAU visiteur seulement (ni économiseur de données, ni 2g) : demande à
+    l'avance ce que l'écran 3 de la présentation demandera (lib/features/intro/intro_screen.dart),
+    en deux temps. D'abord, tout de suite et en basse priorité, la liste des tendances (14 Ko,
+    même adresse que lib/data/api/tmdb_api.dart : la requête de l'app est ensuite servie par le
+    cache HTTP du navigateur, en 20 ms au lieu de 200). Puis les premières affiches (w342, lues
+    en CORS anonyme comme le fait le moteur de Flutter), les mêmes séries que l'app garde (sans
+    les genres que retire isNoiseTv, lib/data/api/tmdb_discover.dart) : 5 cases sur téléphone,
+    10 sur ordinateur, mais SEULEMENT quand le script de l'app et canvaskit.wasm sont arrivés :
+    ceux-ci gardent tout le débit. La liste se lit pendant que le fil principal est libre :
+    une fois le script de l'app arrivé, il est pris par son exécution, et lire la liste à ce
+    moment-là retardait les affiches de près de deux secondes (banc, processeur ralenti quatre fois).
     Placé avant les liens de polices que tool/web_install.sh ajoute : les deux gros fichiers
     partent d'abord. Les clics se lisent sur document (aucun gestionnaire en ligne : la CSP
     les refuse), donc les boutons marchent dès que la page est dessinée.
@@ -80,7 +91,14 @@ d.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest(
 var p=typeof ImageDecoder!=='undefined'&&(navigator.vendor==='Google Inc.'||navigator.userAgent.indexOf('Edg/')>=0)&&typeof Intl.v8BreakIterator!=='undefined'&&typeof Intl.Segmenter!=='undefined'?'canvaskit/chromium/':'canvaskit/';
 function l(r,a,u,x){var e=d.createElement('link');e.rel=r;if(a)e.as=a;e.href=u;if(x)e.crossOrigin='anonymous';h.appendChild(e)}
 l('modulepreload',0,p+'canvaskit.js');l('preload','fetch',p+'canvaskit.wasm',1);
-function fin(){['attente','intro'].forEach(function(n){var a=d.getElementById(n);if(a){a.className='fin';a.inert=true;a.setAttribute('aria-hidden','true');setTimeout(function(){a.remove()},400)}})}
+var im=[];
+function amorce(){var n=navigator.connection,A=['main.dart.js','canvaskit.wasm'],V={},U=[],F=0,N=innerWidth>=720&&innerHeight>=500?10:5;
+if(!window.PerformanceObserver||!window.fetch||n&&(n.saveData||/^(slow-)?2g$/.test(n.effectiveType||'')))return;
+function go(){if(F&&U.length){U.forEach(function(u){var x=new Image();x.crossOrigin='anonymous';x.fetchPriority='low';x.src=u;im.push(x)});U=[]}}
+fetch('https://api.mirinu.ch/3/trending/tv/week?language='+{fr:'fr-FR',en:'en-US',de:'de-DE',es:'es-ES',it:'it-IT'}[c],{priority:'low'}).then(function(q){return q.ok?q.json():0}).then(function(j){var L=j&&j.results||[],k=0,i;for(i=0;i<L.length&&k<N;i++){if((L[i].genre_ids||[]).some(function(g){return g===10763||g===10767||g===10766}))continue;k++;if(L[i].poster_path)U.push('https://image.tmdb.org/t/p/w342'+L[i].poster_path)}go()}).catch(function(){});
+var o=new PerformanceObserver(function(l){l.getEntries().forEach(function(e){A.forEach(function(a){if(e.name.indexOf(a)>0)V[a]=1});if(V[A[0]]&&V[A[1]]){F=1;o.disconnect();go()}})});o.observe({type:'resource',buffered:true})}
+if(neuf)try{amorce()}catch(e){}
+function fin(){im=[];['attente','intro'].forEach(function(n){var a=d.getElementById(n);if(a){a.className='fin';a.inert=true;a.setAttribute('aria-hidden','true');setTimeout(function(){a.remove()},400)}})}
 addEventListener('flutter-first-frame',function(){if(neuf&&!r.classList.contains('passe'))setTimeout(fin,4000);else fin()});
 addEventListener('mirinu-intro-pret',fin)
 })()</script>
@@ -94,11 +112,11 @@ addEventListener('mirinu-intro-pret',fin)
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <link rel="preload" as="script" href="v/0.72.1-f0ed2de/main.dart.js">
+  <link rel="preload" as="script" href="v/0.72.2-9998c09/main.dart.js">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/Inter-Regular.woff2">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/BricolageGrotesque-Bold.woff2">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/Roboto-Regular.woff2">
-  <link rel="preload" as="fetch" crossorigin="anonymous" href="v/0.72.1-f0ed2de/assets/fonts/MaterialIcons-Regular.otf">
+  <link rel="preload" as="fetch" crossorigin="anonymous" href="v/0.72.2-9998c09/assets/fonts/MaterialIcons-Regular.otf">
   <title>Mirinu</title>
   <link rel="manifest" href="manifest.json">
   <!--
@@ -209,7 +227,7 @@ addEventListener('mirinu-intro-pret',fin)
 </main>
   <!-- intro:fin -->
   <!--
-    You can customize the "flutter_bootstrap.js?v=0.72.1-f0ed2de" script.
+    You can customize the "flutter_bootstrap.js?v=0.72.2-9998c09" script.
     This is useful to provide a custom configuration to the Flutter loader
     or to give the user feedback during the initialization process.
 
@@ -219,6 +237,6 @@ addEventListener('mirinu-intro-pret',fin)
   <!-- Avant l'app : Ctrl + molette et Ctrl + plus / moins zooment la
        page (voir le fichier). -->
   <script src="browser_zoom.js"></script>
-  <script src="flutter_bootstrap.js?v=0.72.1-f0ed2de" async></script>
+  <script src="flutter_bootstrap.js?v=0.72.2-9998c09" async></script>
 </body>
 </html>
