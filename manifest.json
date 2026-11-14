@@ -13,7 +13,7 @@
     "categories": [
         "entertainment"
     ],
-    "orientation": "portrait-primary",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
