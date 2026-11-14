@@ -26,7 +26,7 @@
   petit script de web/index.html (test/prefetch_web_test.dart les compare).
 */
 (function () {
-  var MARQUE = '0.72.2-9998c09';
+  var MARQUE = '0.72.3-3df7b73';
   var DELAI_SITE = 2000;
   var DELAI_APP = 10000;
   // {M} : la marque ; {C} : le dossier de CanvasKit (chromium ou non). Les plus gros d'abord.
