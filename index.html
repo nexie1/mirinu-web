@@ -32,7 +32,7 @@
     d'injection ne pourrait donc ni lancer de code ni envoyer la clé de
     synchro ailleurs qu'aux services listés dans connect-src.
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-8gseMNgyxEC6bj3DRTF4aoJjv1eN9i/ztFXSIuSv9zw=' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://api.mirinu.ch https://fonts.gstatic.com https://image.tmdb.org https://cdn.mangaupdates.com https://static.tvmaze.com https://accounts.google.com/gsi/; frame-src 'self' https://accounts.google.com/gsi/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-HLSEBEQwpebjqafZ5SSV378zDMwtuYgDCRhAfLUwJ+Y=' 'wasm-unsafe-eval' https://accounts.google.com/gsi/client; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' blob: https://api.mirinu.ch https://fonts.gstatic.com https://image.tmdb.org https://cdn.mangaupdates.com https://static.tvmaze.com https://accounts.google.com/gsi/; frame-src 'self' https://accounts.google.com/gsi/; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <!--
     Connexions ouvertes pendant que l'app démarre : la poignée de main TLS
@@ -82,6 +82,7 @@
     partent d'abord. Les clics se lisent sur document (aucun gestionnaire en ligne : la CSP
     les refuse), donc les boutons marchent dès que la page est dessinée.
   -->
+  <meta name="mirinu-app" content="v/0.73.0-2ee6d9b/">
   <script id="attente-js">(function(){
 var d=document,h=d.head,r=d.documentElement,K='mirinu.intro',neuf=0;
 try{var s=localStorage;if(s.getItem('flutter.dark_mode')==='false')r.className='clair';neuf=!Object.keys(s).some(function(k){return k.indexOf('flutter.')===0});if(neuf)s.removeItem(K)}catch(e){}
@@ -90,9 +91,13 @@ function w(v){try{localStorage.setItem(K,v)}catch(e){}}
 d.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('#intro button'),m=d.getElementById('intro'),a=b&&b.getAttribute('data-a'),t;if(!a)return;if(a==='passer'){w('passer');r.classList.add('passe')}else if(m.getAttribute('data-p')===null){if(m.getAttribute('data-e')==='1'){m.setAttribute('data-e','2');w('2');t=m.querySelector('.e2 h1');if(t)t.focus()}else{m.setAttribute('data-p','1');w('3')}}});
 var p=typeof ImageDecoder!=='undefined'&&(navigator.vendor==='Google Inc.'||navigator.userAgent.indexOf('Edg/')>=0)&&typeof Intl.v8BreakIterator!=='undefined'&&typeof Intl.Segmenter!=='undefined'?'canvaskit/chromium/':'canvaskit/';
 function l(r,a,u,x){var e=d.createElement('link');e.rel=r;if(a)e.as=a;e.href=u;if(x)e.crossOrigin='anonymous';h.appendChild(e)}
-l('modulepreload',0,p+'canvaskit.js');l('preload','fetch',p+'canvaskit.wasm',1);
+var ap=d.querySelector('meta[name=mirinu-app]'),v=ap&&ap.content,bl=navigator.vendor==='Google Inc.'||navigator.userAgent.indexOf('Edg/')>=0,wg=0;
+try{wg=WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,95,1,120,0]))}catch(e){}
+var W=v&&bl&&wg,sk=p==='canvaskit/chromium/'?'skwasm':'skwasm_heavy';
+if(W){l('modulepreload',0,v+'main.dart.mjs');l('preload','fetch',v+'main.dart.wasm',1);l('modulepreload',0,'canvaskit/'+sk+'.js');l('preload','fetch','canvaskit/'+sk+'.wasm',1)}
+else{l('modulepreload',0,p+'canvaskit.js');l('preload','fetch',p+'canvaskit.wasm',1);if(v)l('preload','script',v+'main.dart.js')}
 var im=[];
-function amorce(){var n=navigator.connection,A=['main.dart.js','canvaskit.wasm'],V={},U=[],F=0,N=innerWidth>=720&&innerHeight>=500?10:5;
+function amorce(){var n=navigator.connection,A=W?['main.dart.wasm',sk+'.wasm']:['main.dart.js','canvaskit.wasm'],V={},U=[],F=0,N=innerWidth>=720&&innerHeight>=500?10:5;
 if(!window.PerformanceObserver||!window.fetch||n&&(n.saveData||/^(slow-)?2g$/.test(n.effectiveType||'')))return;
 function go(){if(F&&U.length){U.forEach(function(u){var x=new Image();x.crossOrigin='anonymous';x.fetchPriority='low';x.src=u;im.push(x)});U=[]}}
 fetch('https://api.mirinu.ch/3/trending/tv/week?language='+{fr:'fr-FR',en:'en-US',de:'de-DE',es:'es-ES',it:'it-IT'}[c],{priority:'low'}).then(function(q){return q.ok?q.json():0}).then(function(j){var L=j&&j.results||[],k=0,i;for(i=0;i<L.length&&k<N;i++){if((L[i].genre_ids||[]).some(function(g){return g===10763||g===10767||g===10766}))continue;k++;if(L[i].poster_path)U.push('https://image.tmdb.org/t/p/w342'+L[i].poster_path)}go()}).catch(function(){});
@@ -112,11 +117,10 @@ addEventListener('mirinu-intro-pret',fin)
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <link rel="preload" as="script" href="v/0.72.3-3df7b73/main.dart.js">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/Inter-Regular.woff2">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/BricolageGrotesque-Bold.woff2">
   <link rel="preload" as="fetch" crossorigin="anonymous" href="fonts/Roboto-Regular.woff2">
-  <link rel="preload" as="fetch" crossorigin="anonymous" href="v/0.72.3-3df7b73/assets/fonts/MaterialIcons-Regular.otf">
+  <link rel="preload" as="fetch" crossorigin="anonymous" href="v/0.73.0-2ee6d9b/assets/fonts/MaterialIcons-Regular.otf">
   <title>Mirinu</title>
   <link rel="manifest" href="manifest.json">
   <!--
@@ -227,7 +231,7 @@ addEventListener('mirinu-intro-pret',fin)
 </main>
   <!-- intro:fin -->
   <!--
-    You can customize the "flutter_bootstrap.js?v=0.72.3-3df7b73" script.
+    You can customize the "flutter_bootstrap.js?v=0.73.0-2ee6d9b" script.
     This is useful to provide a custom configuration to the Flutter loader
     or to give the user feedback during the initialization process.
 
@@ -237,6 +241,6 @@ addEventListener('mirinu-intro-pret',fin)
   <!-- Avant l'app : Ctrl + molette et Ctrl + plus / moins zooment la
        page (voir le fichier). -->
   <script src="browser_zoom.js"></script>
-  <script src="flutter_bootstrap.js?v=0.72.3-3df7b73" async></script>
+  <script src="flutter_bootstrap.js?v=0.73.0-2ee6d9b" async></script>
 </body>
 </html>

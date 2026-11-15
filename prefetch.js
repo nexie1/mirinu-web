@@ -26,14 +26,31 @@
   petit script de web/index.html (test/prefetch_web_test.dart les compare).
 */
 (function () {
-  var MARQUE = '0.72.3-3df7b73';
+  var MARQUE = '0.73.0-2ee6d9b';
   var DELAI_SITE = 2000;
   var DELAI_APP = 10000;
+  // 1 si la publication est une construction WebAssembly (posé par tool/web_install.sh) : le
+  // navigateur prend alors le module wasm et skwasm s'il sait (WasmGC et moteur Blink), le script
+  // JavaScript et CanvasKit sinon.
+  var WASM = '1' === '1';
   // {M} : la marque ; {C} : le dossier de CanvasKit (chromium ou non). Les plus gros d'abord.
   var FICHIERS = [
     'v/{M}/main.dart.js',
     '{C}canvaskit.wasm',
     '{C}canvaskit.js',
+    'flutter_bootstrap.js?v={M}',
+    'fonts/Inter-Regular.woff2',
+    'fonts/BricolageGrotesque-Bold.woff2',
+    'fonts/Roboto-Regular.woff2',
+    'v/{M}/assets/fonts/MaterialIcons-Regular.otf'
+  ];
+  // Même liste pour un navigateur qui lance l'app WebAssembly ({S} : skwasm, ou skwasm_heavy sans
+  // ImageDecoder).
+  var FICHIERS_WASM = [
+    'v/{M}/main.dart.wasm',
+    'canvaskit/{S}.wasm',
+    'canvaskit/{S}.js',
+    'v/{M}/main.dart.mjs',
     'flutter_bootstrap.js?v={M}',
     'fonts/Inter-Regular.woff2',
     'fonts/BricolageGrotesque-Bold.woff2',
@@ -66,10 +83,18 @@
         typeof Intl.v8BreakIterator !== 'undefined' &&
         typeof Intl.Segmenter !== 'undefined';
       var dossier = chromium ? 'canvaskit/chromium/' : 'canvaskit/';
-      for (var i = 0; i < FICHIERS.length; i++) {
+      // Le chargeur de Flutter prend WebAssembly si WasmGC existe et si le moteur est Blink (Chrome,
+      // Edge) : mêmes tests que web/index.html (attente-js).
+      var blink = navigator.vendor === 'Google Inc.' || navigator.userAgent.indexOf('Edg/') >= 0;
+      var wasmgc = false;
+      try {
+        wasmgc = WebAssembly.validate(new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 5, 1, 95, 1, 120, 0]));
+      } catch (e) {}
+      var liste = WASM && blink && wasmgc ? FICHIERS_WASM : FICHIERS;
+      for (var i = 0; i < liste.length; i++) {
         var l = d.createElement('link');
         l.rel = 'prefetch';
-        l.href = base + FICHIERS[i].replace(/\{M\}/g, MARQUE).replace('{C}', dossier);
+        l.href = base + liste[i].replace(/\{M\}/g, MARQUE).replace('{C}', dossier).replace('{S}', chromium ? 'skwasm' : 'skwasm_heavy');
         d.head.appendChild(l);
       }
     };
