@@ -33,11 +33,11 @@ addEventListener("message", eventListener);
 if (!window._flutter) {
   window._flutter = {};
 }
-_flutter.buildConfig = {"engineRevision":"4c525dac5ebe5971c5708ef73558ed8edcf4a362","builds":[{"compileTarget":"dart2wasm","renderer":"skwasm","mainWasmPath":"v/0.75.0-9509450/main.dart.wasm","jsSupportRuntimePath":"v/0.75.0-9509450/main.dart.mjs"},{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"v/0.75.0-9509450/main.dart.js"}],"useLocalCanvasKit":true};
+_flutter.buildConfig = {"engineRevision":"4c525dac5ebe5971c5708ef73558ed8edcf4a362","builds":[{"compileTarget":"dart2wasm","renderer":"skwasm","mainWasmPath":"v/0.76.0-30de5e4/main.dart.wasm","jsSupportRuntimePath":"v/0.76.0-30de5e4/main.dart.mjs"},{"compileTarget":"dart2js","renderer":"canvaskit","mainJsPath":"v/0.76.0-30de5e4/main.dart.js"}],"useLocalCanvasKit":true};
 
 _flutter.loader.load({
-  config: { assetBase: "v/0.75.0-9509450/" },
+  config: { assetBase: "v/0.76.0-30de5e4/" },
   serviceWorkerSettings: {
-    serviceWorkerVersion: "1356149672" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */
+    serviceWorkerVersion: "2419280631" /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */
   }
 });
