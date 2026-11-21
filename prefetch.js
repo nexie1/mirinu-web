@@ -26,7 +26,7 @@
   petit script de web/index.html (test/prefetch_web_test.dart les compare).
 */
 (function () {
-  var MARQUE = '0.80.1-cdeefb6';
+  var MARQUE = '0.80.2-8e88ade';
   var DELAI_SITE = 2000;
   var DELAI_APP = 10000;
   // 1 si la publication est une construction WebAssembly (posé par tool/web_install.sh) : le
